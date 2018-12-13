@@ -13,8 +13,22 @@ db.authenticate()
   .then(() => console.log("Connected to database!"))
   .catch(err => console.log(err));
 
+app.engine("handlebars", exphbs({
+  defaultLayout: "main",
+  layoutsDir: path.join(__dirname, "views/layouts"),
+  partialsDir: path.join(__dirname, "/views/partials")
+}));
+
+app.set("view engine", "handlebars");
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.get("/", (req, res) => {
-  res.send("index");
+  res.render("index", {
+    layout: "landing"
+  });
 });
 
 app.use("/gigs", require("./routes/gigs"));

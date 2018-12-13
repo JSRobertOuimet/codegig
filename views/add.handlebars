@@ -1,0 +1,34 @@
+<section id="add" class="container">
+  <div class="form-wrap">
+    <h1>Add A Gig</h1>
+    <p>Your contact email will be shared with registered users to apply to your gig</p>
+    {{#each errors}}
+      <div class="error">
+        <p>{{error}}</p>
+      </div>
+    {{/each}}
+    <form action="/gigs/add" method="POST">
+      <div class="input-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" value="{{title}}" class="input-box" maxlength="100">
+      </div>
+      <div class="input-group">
+        <label for="technologies">Technologies</label>
+        <input type="text" name="technologies" id="technologies" value="{{technologies}}" class="input-box" maxlength="100">
+      </div>
+      <div class="input-group">
+        <label for="budget">Budget (Leave blank for unknown)</label>
+        <input type="number" name="budget" id="budget" value="{{budget}}" class="input-box">
+      </div>
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="input-box" rows="10">{{description}}</textarea>
+      </div>
+      <div class="input-group">
+        <label for="budget">Contact Email</label>
+        <input type="email" name="contact_email" id="contactEmail" value="{{contact_email}}" class="input-box">
+      </div>
+      <input type="submit" value="Add Gig" class="btn btn-reverse">
+    </form>
+  </div>
+</section>
